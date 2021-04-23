@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import React, { Component } from 'react'
 import './App.css';
+import Navbar from './Components/Navbar'
+import Footer from './Components/Footer'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import WelcomePage from './Components/WelcomePage/WelcomePage'
+import InitialSearch from './Components/InitialSeachPage/InitialSearch'
+import SearchByGroup from './Components/SearchByGroupPage/SearchByGroup'
+
+
+
+import BookPage from './Components/BookPage'
+
+import {BrowserRouter, Route, Switch, Link} from 'react-router-dom'
+
+
+export default class App extends Component {
+  render() {
+    let styleContainer = {
+      height:700,
+      margin:0,
+    }
+    return (
+      <div>
+        <BrowserRouter> 
+          <Navbar/>
+            <div style={styleContainer}>
+              
+            
+
+              <Route exact path='/' component={WelcomePage}/>
+              <Route  path='/search' component={InitialSearch}/>
+              <Route  path='/searchbygroup' component={SearchByGroup}/>
+              <Route  path='/.:book_id' component={BookPage} />
+              
+            </div>  
+          <Footer/>
+      
+      </BrowserRouter>
+      </div>
+    )
+  }
 }
 
-export default App;
+
+
+
+
